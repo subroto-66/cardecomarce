@@ -1,6 +1,6 @@
 "use client"
 import { FcOk } from "react-icons/fc";
-import CategoryProduct from "../component/CategoryProduct";
+import CategoryProduct from '../../component/CategoryProduct';
 
 export default function page() {
 
@@ -68,7 +68,7 @@ export default function page() {
 
   return (
 <div className="w-full">
-<div className="max-w-[1140px] h-full mx-auto p-2 lg:p-0">
+<div className="max-w-[1140px] h-full mx-auto p-2 ">
 
 
   <h1 className="text-xl font-semibold pb-4 pt-8">Category Products</h1>

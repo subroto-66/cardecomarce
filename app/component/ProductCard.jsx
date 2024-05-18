@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
     // </div>
 
     // <Link href="#">
-      <div className="w-full bg-white shadow-md overflow-hidden rounded-sm ">
+      <div className="w-full h-[19rem] bg-white shadow-md transition-all duration-300 hover:shadow-2xl overflow-hidden rounded-sm relative">
         <img
           className="w-full h-40 "
           src={product.image}
@@ -40,7 +40,7 @@ const ProductCard = ({ product }) => {
           <h5 className='text-green'>{product.category}</h5>
           <p className='font-semibold'>$ {product.price}</p>
         </div>
-        <Button className='w-full bg-[#28C8A4]' onClick={() => dispatch(addToCart(product))} rounded="none">Add to Cart</Button>
+        <Button className='w-full block bg-[#28C8A4]' onClick={() => dispatch(addToCart(product))} rounded="none">Add to Cart</Button>
       </div>
     // </Link>
   );

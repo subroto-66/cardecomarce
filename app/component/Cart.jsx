@@ -3,14 +3,17 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from 'rizzui';
+import { Button, Loader } from 'rizzui';
 import {
   decrementQuantity,
   incrementQuantity,
   removeFromCart,
 } from '../redux/cart.slice';
 
+
 export default function Cart() {
+   
+    const[isLoading, setIsLoading ] = useState(true);
 
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
@@ -27,15 +30,39 @@ export default function Cart() {
     setCartDAta(cart)
   }, [cart])
 
+
+  useEffect(() => {
+    // Simulating data loading delay
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className='w-full '>
-      <div className='max-w-[1140px] h-full mx-auto p-2 lg:p-0 '>
-      {cartDAta.length == 0 ? (
+      <div className='max-w-[1140px] h-full mx-auto p-2 lg:p-0 md:min-h-[70vh] min-h-[80vh] mb-10'>
+
+
+
+         <>
+           {isLoading ? 
+            // <ShemerTableSkeleton />
+            <div className='flex h-full justify-center items-center  md:min-h-[70vh] min-h-[80vh]'><Loader size="xl" /></div>
+          :
+
+
+
+      cartDAta.length == 0 ? (
          
-          <h1>Your Cart is Empty!</h1>
+          <div className='flex h-full justify-center items-center  md:min-h-[70vh] min-h-[80vh]'> <span>Your Cart is Empty!</span> </div>
         ) : (
+
+          
           <>
-            <table className="table-fixed w-full mt-5">
+          
+          <table className="table-fixed w-full mt-5">
               <thead className='font-semibold'>
                 <tr className='text-left'>
                   <th className=" md:px-4 py-2 md:text-base text-sm font-semibold">Image</th>
@@ -65,11 +92,27 @@ export default function Cart() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+          </table>
 
             <h2 className='text-center my-4'>Grand Total: <span className='text-lg'>${getTotalPrice().toFixed(2)}</span></h2>
+          
+          
+          
+          
           </>
-        )}
+          
+          
+
+        )
+
+
+
+
+
+      }
+
+      </>
+
       </div>
     </div>
   )
