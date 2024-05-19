@@ -1,4 +1,5 @@
 import { Roboto } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
 import "./globals.css";
@@ -22,6 +23,21 @@ export default function RootLayout({ children }) {
         <Store>
           <Navbar />
           {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              className: "",
+              duration: 4000,
+              style: {
+                top: "3rem",
+                right: "1rem",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              },
+              success: {
+                duration: 3000,
+              },
+            }}
+          />
           <Footer />
         </Store>
       </body>

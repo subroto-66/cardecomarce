@@ -29,7 +29,7 @@ const Navbar = () => {
       // Simulate a data fetching delay
       const timer = setTimeout(() => {
         setIsLoading(false);
-      }, 2000); // Adjust the delay as needed
+      }, 1500); // Adjust the delay as needed
   
       return () => clearTimeout(timer);
     }, []);
@@ -54,7 +54,7 @@ const Navbar = () => {
       </ul> */}
 
 
-      <div className="w-full h-20 border-b border-[#d7d7d7]">
+      <div className="w-full h-20 border-b bg-[#ffffff] border-[#d7d7d7]">
         <div className="w-full h-full max-w-[1140px] mx-auto p-2 ">
           <div className="w-full flex items-center justify-between h-full">
             <div className="flex items-center font-bold text-3xl"><Link href="/">GamesKart</Link></div>
@@ -82,25 +82,20 @@ const Navbar = () => {
         <div className="max-w-[1140px] h-full mx-auto p-2 ">
           <div className="w-full flex justify-between h-full">
             <ul className="flex items-center gap-x-4">
-              <Link href="/" className="flex items-center capitalize hover:text-green cursor-pointer text-sm font-bold gap-x-1">
+              <Link href="/" className=" hover:text-[#FB711D] cursor-pointer text-sm font-bold">
               Home 
               </Link>
-              <Link href="/all-product" className="flex items-center hover:text-green capitalize cursor-pointer text-sm font-bold gap-x-1">
+              <Link href="/all-product" className="hover:text-[#FB711D] capitalize cursor-pointer text-sm font-bold">
               All Product 
               </Link>
-              <Link href="/all-category" className="flex items-center hover:text-green capitalize cursor-pointer text-sm font-bold gap-x-1">
+              <Link href="/all-category" className="hover:text-[#FB711D] capitalize cursor-pointer text-sm font-bold">
                 All Category 
-                {/* <FaCaretDown /> */}
               </Link>
             </ul>
             <div></div>
           </div>
         </div>
       </div>
-
-
-
-
     </nav>
   );
 };

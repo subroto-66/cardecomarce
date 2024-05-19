@@ -1,6 +1,5 @@
 "use client"
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Loader } from 'rizzui';
@@ -35,7 +34,7 @@ export default function Cart() {
     // Simulating data loading delay
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -70,7 +69,7 @@ export default function Cart() {
                   <th className=" md:px-4 py-2 md:text-base text-sm font-semibold">Price</th>
                   <th className=" md:px-4 py-2 md:text-base text-sm font-semibold">Qty</th>
                   <th className=" md:px-4 py-2 md:text-base text-sm font-semibold">Actions</th>
-                  <th className=" md:px-4 py-2 md:text-base text-sm font-semibold">T.Price</th>
+                  <th className=" md:px-4 py-2 md:text-base text-center text-sm font-semibold">T.Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,25 +77,29 @@ export default function Cart() {
                   <tr key={item.id} className='text-xs md:text-left text-center md:text-sm font-medium'>
                     <td className="px-1 md:px-4 py-2">
                       {/* Properly render Image component */}
-                      <Image src={item.image} height={80} width={60} alt='' />
+                      <img src={item.image} className='w-16 h-12' alt="" />
                     </td>
                     <td className="px-1 md:px-4 py-2 ">{item.product}</td>
                     <td className="px-1 md:px-4 py-2 ">$ {item.price}</td>
                     <td className="px-1 md:px-4 py-2 ">{item.quantity}</td>
                     <td className="px-1 md:px-4 py-1 flex flex-wrap gap-x-1">
-                      <Button onClick={() => dispatch(incrementQuantity(item.id))}  size="sm" variant="outline">+</Button>
                       <Button onClick={() => dispatch(decrementQuantity(item.id))}  size="sm" variant="outline">-</Button>
+                      <Button onClick={() => dispatch(incrementQuantity(item.id))}  size="sm" variant="outline">+</Button>
                       <Button onClick={() => dispatch(removeFromCart(item.id))}  size="sm" variant="outline">x</Button>
                     </td>
-                    <td className=" md:px-4 py-2">$ {(item.quantity * item.price).toFixed(2)}</td>
+                    <td className=" md:px-4 text-center py-2">$ {(item.quantity * item.price).toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
+             
           </table>
-
-            <h2 className='text-center my-4'>Grand Total: <span className='text-lg'>${getTotalPrice().toFixed(2)}</span></h2>
-          
-          
+          <div className='w-full border-t border-[#FB711D] mt-5'>
+              <h2 className='text-end text-sm font-bold md:pr-12 my-5'>Grand Total: <span className='text-base'>${getTotalPrice().toFixed(2)}</span></h2>
+            <div className='flex justify-end md:pr-12 mt-2'>
+              <a type='button' href="/checkout" className='text-base cursor-pointer rounded-sm font-medium bg-[#FB711D] hover:bg-[#fc721dd0] text-[#fff] px-4 py-2'> Checkout</a>
+            </div>
+          </div>
+   
           
           
           </>

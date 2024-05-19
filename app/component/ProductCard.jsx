@@ -1,48 +1,37 @@
 "use client"
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { Button } from 'rizzui';
+import TostCart from '../component/TostCard';
 import { addToCart } from './../redux/cart.slice';
 
 const ProductCard = ({ product }) => {
     
   const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    // Display a success toast message
+    toast.success(<TostCart/>);
+  };
 
   return (
-    // <div>
-    //       <Image
-    //   src={product.image}
-    //   height={300} width={220}
-    //   alt="Picture of the author"
-    // />
-    //   {/* <Image height={300} width={220} /> */}
-    //   <h4>{product.product}</h4>
-    //   <h5 >{product.category}</h5>
-    //   <p>$ {product.price}</p>
-    //   <button
-    //     onClick={() => dispatch(addToCart(product))}
-       
-    //   >
-    //     Add to Cart
-    //   </button>
-    // </div>
 
-    // <Link href="#">
-      <div className="w-full h-[19rem] bg-white shadow-md transition-all duration-300 hover:shadow-2xl overflow-hidden rounded-sm relative">
+      <div className="w-full border border-[#fff] min-h-80 flex flex-col justify-between bg-white shadow-2xl transition-all ease-out duration-200 hover:shadow-lg overflow-hidden rounded-sm relative">
         <img
-          className="w-full h-40 "
+          className="w-full h-40"
           src={product.image}
           alt=""
         />
         <div className="w-full grid grid-cols-1 gap-y-1 py-3 px-1">
-            <h2 className="text-[15px] font-semibold">
+            <h2 className="text-[15px] font-medium min-h-5 h-full">
           {product.product}
           </h2>
-          <h5 className='text-green'>{product.category}</h5>
+          <h5 className='text-[#FB711D]'>{product.category}</h5>
           <p className='font-semibold'>$ {product.price}</p>
         </div>
-        <Button className='w-full block bg-[#28C8A4]' onClick={() => dispatch(addToCart(product))} rounded="none">Add to Cart</Button>
+        <Button className='w-full bg-[#1E6DF6]' onClick={() => handleAddToCart()} rounded="none">Add to Cart</Button>
       </div>
-    // </Link>
+
   );
 };
 

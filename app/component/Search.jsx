@@ -6,7 +6,7 @@ export default function Search() {
   return (
     <div className="w-full relative">
       <Input
-        inputClassName="h-12 relative"
+        inputClassName="h-11 relative"
         placeholder="Search Brands , Category & Games"
       />
       <FaSearch className="absolute right-4 bottom-4" />
